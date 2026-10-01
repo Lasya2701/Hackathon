@@ -1,0 +1,123 @@
+{
+  "entities": {
+    "lostItems": {
+      "title": "Lost Item",
+      "description": "Items reported lost by students",
+      "type": "object",
+      "properties": {
+        "reportId": { "type": "string" },
+        "userId": { "type": "string" },
+        "ownerName": { "type": "string" },
+        "ownerRole": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "brand": { "type": "string" },
+        "model": { "type": "string" },
+        "color": { "type": "string" },
+        "location": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["LOST", "MATCH_PENDING", "CLAIMED", "RETURNED"] },
+        "ownerEmail": { "type": "string" },
+        "ownerPhone": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "status", "createdAt"]
+    },
+    "foundItems": {
+      "title": "Found Item",
+      "description": "Items reported found by students, campus visitors or security",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "brand": { "type": "string" },
+        "model": { "type": "string" },
+        "color": { "type": "string" },
+        "location": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["UNCLAIMED", "CLAIM_PENDING", "RETURNED"] },
+        "finderNotes": { "type": "string" },
+        "storageLocation": { "type": "string" },
+        "custodyBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "category", "status", "createdAt"]
+    },
+    "unclaimedItems": {
+      "title": "Unclaimed Item",
+      "description": "Items stored in security vault awaiting claim",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "brand": { "type": "string" },
+        "model": { "type": "string" },
+        "color": { "type": "string" },
+        "location": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "description": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "matches": {
+      "title": "Possible Match",
+      "description": "AI-detected potential matches between lost and found items",
+      "type": "object",
+      "properties": {
+        "lostItemId": { "type": "string" },
+        "foundItemId": { "type": "string" },
+        "confidenceScore": { "type": "number" },
+        "reasons": { "type": "array", "items": { "type": "string" } },
+        "aiNotes": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING_REVIEW", "CLAIMED", "DISMISSED", "APPROVED"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["lostItemId", "foundItemId", "confidenceScore", "status", "createdAt"]
+    },
+    "claims": {
+      "title": "Ownership Claim",
+      "description": "Ownership claim filed by student with private verification details",
+      "type": "object",
+      "properties": {
+        "lostItemId": { "type": "string" },
+        "foundItemId": { "type": "string" },
+        "matchId": { "type": "string" },
+        "claimantName": { "type": "string" },
+        "claimantEmail": { "type": "string" },
+        "claimantPhone": { "type": "string" },
+        "studentId": { "type": "string" },
+        "privateVerificationProof": { "type": "string" },
+        "status": { "type": "string", "enum": ["PENDING_REVIEW", "APPROVED", "REJECTED", "RETURNED"] },
+        "pickupOtp": { "type": "string" },
+        "otpGeneratedAt": { "type": "string", "format": "date-time" },
+        "reviewedBy": { "type": "string" },
+        "rejectionReason": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["lostItemId", "foundItemId", "claimantName", "privateVerificationProof", "status", "createdAt"]
+    },
+    "custodyRecords": {
+      "title": "Custody and Return Records",
+      "description": "Audit trail of security custody and final pickup verification",
+      "type": "object",
+      "properties": {
+        "itemId": { "type": "string" },
+        "itemType": { "type": "string" },
+        "action": { "type": "string" },
+        "officer": { "type": "string" },
+        "notes": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["itemId", "action", "timestamp"]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow public read and write for hackathon campus demo:
+    // Finder is guest with no login required, students can report lost items without barrier
+    match /lostItems/{docId} {
+      allow read, write: if true;
+    }
+    match /foundItems/{docId} {
+      allow read, write: if true;
+    }
+    match /unclaimedItems/{docId} {
+      allow read, write: if true;
+    }
+    match /matches/{docId} {
+      allow read, write: if true;
+    }
+    match /claims/{docId} {
+      allow read, write: if true;
+    }
+    match /custodyRecords/{docId} {
+      allow read, write: if true;
+    }
+    match /returns/{docId} {
+      allow read, write: if true;
+    }
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+  }
+}

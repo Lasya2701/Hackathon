@@ -1,0 +1,10 @@
+{
+  "name": "CampusFind AI",
+  "description": "AI-powered campus lost-and-found platform connecting students with finders using Gemini AI image matching, campus QR codes, and secure pickup verification.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
